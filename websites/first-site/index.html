@@ -4,9 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <title>Document</title>
 </head>
 <body>
-  <div>Where am i? :D</div>
+  <div class="banner">
+    <span style="margin-left: 1rem">GROUND BREAKING TODO LIST</span>
+    <form style="display: inline">
+      <input
+        id="searchbar"
+        type="text"
+        placeholder="Search list..."
+      />
+      <button id="search-btn" style="position: relative; right: 10px;" type="button">
+        <i class="material-icons">search</i>
+      </button>
+      <a style="float: right; margin-right: 0.5rem; margin-top: 0.7rem;" href="../../index.html">
+        <i class="material-icons">home</i>
+      </a>
+    </form>
+  </div>
+  <div class="list-container">
+    <ul class="todo-list">
+    </ul>
+  </div>
+  <form style="display: flex; justify-content: center;">
+    <input 
+      id="addtaskbar"
+      type="text"
+      placeholder="Create a todo list app..."
+    />
+    <button id='add-item-btn' style="position: relative; right: 10px;" type="button">
+      <i class="material-icons">add</i>
+    </button>
+  </form>
+  <script src="todoapp.js"></script>
 </body>
 </html>

@@ -1,3 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  color: red;
+  background-image: linear-gradient(120deg, #28e2ff 0%, #66f5ff 100%);
+  font-family: "Poppins", sans-serif;
+}
+
+.banner {
+  position: sticky;
+  display: inline-block;
+  background: #0099ff;
+  color: white;
+  width: 100vw;
+  font-size: 2rem;
+}
+
+form input,
+form button {
+  display: inline;
+  padding: 0.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: #f7fffe;
+}
+
+button {
+  background: #f7fffe;
+  cursor: pointer;
+  border: none;
+  padding: 0.2rem;
+}
+
+form button {
+  color: #4769ff;
+  transition: all 0.2s ease;
+}
+
+form button:hover {
+  background: #4769ff;
+  color: white;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  min-width: 20%;
+  max-width: 90%;
+  list-style: none;
+}
+
+.list-item {
+  margin: 0.5rem;
+  background: white;
+  font-size: 1.5rem;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item li {
+  flex: 1;
+  padding: 0rem 0.5rem;
+}
+
+.check-btn,
+.cross-btn {
+  color: white;
+  background-color: red;
+}
+
+.check-btn {
+  background-color: green;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+#searchbar {
+  margin-left: 5rem;
+}
+
+#addtaskbar {
+  margin-left: 1rem;
 }
