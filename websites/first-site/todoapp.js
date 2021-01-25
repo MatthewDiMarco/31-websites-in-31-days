@@ -12,10 +12,11 @@ searchBtn.addEventListener('click', e => {
 
 // Add Item
 addItemBtn.addEventListener('click', e => {
-  addItem(addItemInput.value);
+  addItem(e, addItemInput.value);
 });
 
-function addItem(desc) {
+function addItem(e, desc) {
+  e.preventDefault();
   let div = document.createElement('div');
   let li = document.createElement('li');
   div.classList = 'list-item';

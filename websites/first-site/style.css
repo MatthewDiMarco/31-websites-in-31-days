@@ -1,10 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 body {
   background-image: linear-gradient(120deg, #28e2ff 0%, #66f5ff 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "Poppins", sans-serif;
 }
 
@@ -52,10 +55,15 @@ form button:hover {
 }
 
 .todo-list {
+  padding: 1rem;
+  margin: 3rem;
+  border: 1px solid rgb(83, 83, 83, 0.5);
+  border-radius: 10px;
   min-width: 20%;
-  max-width: 90%;
-  overflow-x: hidden;
+  max-width: 60vw;
+  max-height: 40vh;
   overflow-y: auto;
+  overflow-x: auto;
   list-style: none;
 }
 
