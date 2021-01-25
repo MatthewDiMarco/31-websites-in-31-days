@@ -1,11 +1,13 @@
 //Credit: Dev Ed (https://www.youtube.com/watch?v=Ttf3CEsEwMQ) for the helpful tute.
+const searchInput = document.getElementById('searchbar'); 
 const searchBtn = document.getElementById('search-btn');
-const addItemBtn = document.getElementById('add-item-btn');
 const addItemInput = document.getElementById('addtaskbar'); 
+const addItemBtn = document.getElementById('add-item-btn');
+const todolist = document.querySelector('.todo-list');
 
 // Search
 searchBtn.addEventListener('click', e => {
-  console.log('SEARCH');
+  searchFilter(searchInput.value);
 });
 
 // Add Item
@@ -53,6 +55,16 @@ function addItem(desc) {
   addItemInput.value = '';
 }
 
-function searchFilter() {
-
+function searchFilter(pattern) {
+  pattern = pattern.toLowerCase();
+  const todos = todolist.childNodes;
+  todos.forEach(todo => {
+    if (pattern === '') {
+      todo.style.display = 'flex';
+    } else if (todo.firstChild.innerHTML.toLowerCase().includes(pattern)) {
+      todo.style.display = 'flex';
+    } else {
+      todo.style.display = 'none';
+    }
+  });
 }

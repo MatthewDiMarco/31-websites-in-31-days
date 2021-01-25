@@ -54,6 +54,8 @@ form button:hover {
 .todo-list {
   min-width: 20%;
   max-width: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
   list-style: none;
 }
 
