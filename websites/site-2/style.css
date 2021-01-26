@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  color: white;
+  background: rgb(24, 24, 24);
+  font-family: "Poppins", sans-serif;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#foot-links-container {
+  background: rgb(36, 36, 36);
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+#foot-links-container a {
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+a {
+  color: white;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  color: rgb(0, 255, 106);
+}
+a:active {
+  color: #0000ff;
+}
+
+#playbtn {
+  position: absolute;
+  font-size: 3rem;
+  width: 300px;
+  height: 75px;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  background-color: rgb(0, 143, 59);
+  color: white;
+  border: solid 3px transparent;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 2px 0;
+  transition: transform 0.15s ease;
+}
+
+button:hover {
+  color: rgb(0, 255, 106);
+  border-color: rgb(0, 255, 106);
+  background-color: white;
+}
+
+button:active {
+  transform: translate(-50%, -40%) !important;
+  filter: saturate(150%);
+}
+
+.quote {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 2.5rem;
+  color: rgb(233, 233, 233);
+  transform: translateX(-50%);
+  animation-duration: 3s;
+  animation-name: animate-right;
+}
+
+@keyframes animate-left {
+  from {
+    margin-top: 0%;
+    opacity: 1;
+  }
+
+  to {
+    margin-top: -25%;
+    opacity: 0;
+    transform: rotate(-10deg) translateX(-100%);
+  }
+}
+
+@keyframes animate-right {
+  from {
+    margin-top: 0%;
+    opacity: 1;
+  }
+
+  to {
+    margin-top: -25%;
+    opacity: 0;
+    transform: rotate(10deg) translate(-0%, 150%);
+  }
+}
