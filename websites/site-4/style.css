@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff0dc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: rgb(39, 0, 37);
+  overflow: hidden;
+}
+
+input {
+  border: 2px solid rgb(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-indent: 10px;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 25px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input:hover {
+  border-color: rgb(0, 0, 0, 0.2);
+}
+
+input:focus {
+  outline: none;
+  border-color: blue;
+}
+
+#input-field {
+  margin: 10px;
+}
+
+#input-field > button {
+  padding: 5px 20px;
+  margin-left: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  margin: 10px;
+}
+
+.grid-container > div,
+button {
+  background-color: rgb(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  border: solid 2px transparent;
+  border-radius: 4px;
+}
+
+button {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 1;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translate(0, 10%) !important;
+  filter: saturate(150%);
+}
+
+button:focus {
+  outline: none;
+}
+
+.fall {
+  pointer-events: none;
+  position: relative;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-name: fallanimation;
+}
+
+.return {
+  pointer-events: none;
+  position: relative;
+  top: -1000px;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-name: returnanimation;
+}
+
+@keyframes fallanimation {
+  from {
+    opacity: 1;
+    width: 100%;
+  }
+  to {
+    opacity: 0;
+    width: 0;
+    transform: translateY(1000px) rotateZ(360deg);
+  }
+}
+
+@keyframes returnanimation {
+  from {
+    opacity: 0.1;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+    transform: translateY(1000px) rotateZ(360deg);
+  }
+}
