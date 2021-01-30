@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #131313;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
+}
+
+/*best read EVER https://css-tricks.com/snippets/css/a-guide-to-flexbox/*/
+.flex-container {
+  margin: 3rem 2rem;
+  display: flex;
+  flex-direction: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+}
+
+#sort-container {
+  border-bottom: 1px solid white;
+}
+
+#sort-container div {
+  background-color: aliceblue;
+  margin: 2px 1px;
+  width: 10px;
+  height: 400px;
+  color: rgba(82, 82, 82, 1);
+}
+
+button,
+input {
+  padding: 0.5rem 2rem;
+  margin: 0.5rem;
+  border: 2px solid rgba(82, 82, 82, 0.5);
+  border-radius: 25px;
+  background-color: transparent;
+  color: aliceblue;
+  transition: all 0.3s ease;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  text-align: center;
+  width: 4rem;
+  border-radius: 10px;
+}
+
+button:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  border: 2px solid rgba(82, 82, 82, 1);
+}
+
+button:active {
+  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+}
+
+button:focus,
+input:focus {
+  outline: none;
+  border-color: aliceblue;
+}
+
+#control-panel {
+  margin: 1rem 5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.divider {
+  opacity: 0.1;
+  margin: 1rem;
+  border: 1px solid rgba(82, 82, 82);
+  border-radius: 3px;
+  background-color: rgba(82, 82, 82);
+  width: 2px;
+  height: 20px;
+}
+
+.selected {
+  background-color: red !important;
+}
