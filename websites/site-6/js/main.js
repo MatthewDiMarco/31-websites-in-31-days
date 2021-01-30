@@ -5,42 +5,41 @@ const maxArrLength = 500;
 
 const sortContainer = $('#sort-container');
 const inputSize = $('#inputSize');
+const sliderSpeed = $('#sortSpeedSlider');
 const shuffleBtn = $('#shuffleButton');
 const bubbleBtn = $('#bubbleSortButton');
-const insertionBtn = $('#insertionSortButton');
 const selectionBtn = $('#selectionSortButton');
 
-let arrayLength = 100; 
+let sortSpeed = 1;
 let sorted = false, sorting = false;
 let sortFunction = bubbleSort;
-buildArrayInDOM();
+buildArrayInDOM(50);
 
 // Event Listeners
 inputSize.change(e => {
-  arrayLength = Math.min(Math.max(parseInt(e.target.value), minArrLength), maxArrLength);
-  e.target.value = arrayLength;
-  buildArrayInDOM();
+  let arrayLength = Math.min(Math.max(parseInt(e.target.value), minArrLength), maxArrLength);
+  buildArrayInDOM(arrayLength);
+  e.target.value = sortContainer.children().length;
+});
+
+sliderSpeed.change(e => {
+  sortSpeed = e.target.value;
 });
 
 bubbleBtn.click(e => {
   changeSort(bubbleSort);
 });
 
-insertionBtn.click(e => {
-  changeSort(insertionSort);
-});
-
 selectionBtn.click(e => {
   changeSort(selectionSort);
 });
-
 
 shuffleBtn.click(shuffleArray);
 
 //Helper functions
 function changeSort(srtFunc) {
   sortFunction = srtFunc;
-  sort();
+  if (!sorting) sort();
 }
 
 function shuffleArray() {
@@ -61,18 +60,22 @@ function shuffleArray() {
   console.log('SHUFFLED');
 }
 
-function buildArrayInDOM() {
+function buildArrayInDOM(arrLen) {
+  sorting = false;
   sortContainer.empty();
-  for (ii=0; ii<arrayLength; ii++) {
+  for (ii=0; ii<arrLen; ii++) {
     sortContainer.append(
-      `<div id="${ii}el" style="height: ${((ii+1)/arrayLength)*sortContainerViewportH}vh;"></div>`
+      `<div id="${ii}el" style="
+        height: ${((ii+1)/arrLen)*sortContainerViewportH}vh;
+        background-color: rgb(${((ii)/arrLen)*100},255,${((ii)/arrLen)*255});
+      "></div>`
     );
   }
   sorted = true;
   console.log('SORTED');
 }
 
-function sort() {
+async function sort() {
   console.log('STARTING SORT...');
   sorting = true;
   sortFunction();
