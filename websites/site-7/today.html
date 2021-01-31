@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Uhh what day is it?</title>
+</head>
+<body>
+  <div id="con">Today is<h1 class="strike" id="theday"></h1></div>
+  <script>
+    let done = false; 
+    const field = document.getElementById('theday');
+
+    const d = new Date();
+    const day = d.getDay();
+    field.innerHTML = '' + d;
+    let daytext = '';
+    switch (day) {
+      case 0: daytext = 'Sunday'; break;
+      case 1: daytext = 'Monday'; break;
+      case 2: daytext = 'Tuesday'; break;
+      case 3: daytext = 'Wednesday'; break;
+      case 4: daytext = 'Thursday'; break;
+      case 5: daytext = 'Friday'; break;
+      case 6: daytext = 'Saturday'; break;
+    }
+    setTimeout(e=> {
+      field.innerHTML = daytext;
+      field.classList = '';
+      done = true;
+    }, 3000);
+  </script>
+</body>
+</html>
