@@ -1,0 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: rgb(10, 10, 10);
+}
+
+.hex {
+  position: relative;
+  display: inline-block;
+  margin: 0 18px;
+  background-color: rgb(230, 157, 0);
+  text-align: center;
+  transition: all 0.1s ease;
+}
+
+.hex,
+.hex::before,
+.hex::after {
+  width: 67px;
+  height: 116px;
+}
+
+.hex::before {
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  transform: rotate(-60deg);
+  content: "";
+}
+
+.hex::after {
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  transform: rotate(60deg);
+  content: "";
+}
+
+.hex:nth-child(even) {
+  top: 59px;
+}
+
+.hex:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  background-color: rgb(255, 174, 0);
+  cursor: pointer;
+  z-index: 100;
+}
+
+.fall {
+  position: relative;
+  pointer-events: none;
+  animation: falling 2s ease-in-out 1 normal forwards;
+}
+
+@keyframes falling {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1.2);
+    -moz-transform: rotate(0deg) scale(1.2);
+    background-color: rgb(255, 174, 0);
+    z-index: 1000;
+  }
+  50% {
+    -webkit-transform: rotate(360deg) scale(0.1) skew(45deg, 45deg);
+    -moz-transform: rotate(360deg) scale(0.1) skew(45deg, 45deg);
+  }
+  100% {
+    -webkit-transform: rotate(719deg);
+    -moz-transform: rotate(719deg);
+    background-color: rgb(187, 187, 187);
+    opacity: 0.5;
+  }
+}
+
+.hex-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  font-size: 3rem;
+  z-index: 100;
+  user-select: none;
+}
+
+#honeycomb {
+  margin: 1.5rem 0 0 1.2rem;
+}
