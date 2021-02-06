@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  background-color: #faf8ef;
+}
+
+#control-panel {
+  position: absolute;
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+#control-panel > * {
+  user-select: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-size: 2rem;
+  outline: none;
+  background-color: aliceblue;
+  border: 5px solid rgb(100, 100, 100);
+  border-radius: 50%;
+  transition: transform 0.05s ease;
+}
+
+#control-panel button:hover {
+  -webkit-transform: scale(1.1);
+}
+
+input {
+  height: 3rem;
+}
