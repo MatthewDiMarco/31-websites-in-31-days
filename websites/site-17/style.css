@@ -10,6 +10,12 @@ body {
   overflow-x: hidden;
 }
 
+#site-wrapper {
+  /*fixes mobile overflow issues*/
+  position: relative;
+  overflow-x: hidden;
+}
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -71,7 +77,7 @@ nav {
 }
 @media screen and (max-width: 768px) {
   #bg {
-    width: 200%;
+    width: 250%;
     transform: translateX(-25%);
   }
   .nav-links {
