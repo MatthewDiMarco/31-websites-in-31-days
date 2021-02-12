@@ -40,6 +40,7 @@ body {
   height: 100%;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.2s ease-out;
 }
 .modal.open {
   opacity: 1;
