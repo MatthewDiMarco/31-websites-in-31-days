@@ -1,14 +1,33 @@
 // Canvas
 const canvas = document.getElementById('mycanvas');
 const ctx = canvas.getContext('2d');
+const decayBar = document.getElementById('decay-input');
+const bounceBar = document.getElementById('bounce-input');
+const fallBar = document.getElementById('fallspd-input');
+const sizeBar = document.getElementById('size-input');
 
 // Particle Properties
-let DECAY_SPD = 0.1;
-let FALL_SPD = 0.1; 
-let MAX_START_WEIGHT = 5;
-let BOUNCE = 0.1;
-let MIN_SIZE = 2;
-let MAX_SIZE = 5;
+let MIN_SIZE, MAX_SIZE, DECAY_SPD, BOUNCE, FALL_SPD, MAX_START_WEIGHT = 5;
+
+// Control Panel Listeners
+function updateDecay() {
+  DECAY_SPD = decayBar.value/1000;
+}
+function updateBounce() {
+  BOUNCE = bounceBar.value/100;
+}
+function updateFallSpd() {
+  FALL_SPD = fallBar.value/100;
+}
+function updateSize() {
+  MIN_SIZE = sizeBar.value/10;
+  MAX_SIZE = MIN_SIZE + 5;
+}
+
+decayBar.addEventListener('change', updateDecay);
+bounceBar.addEventListener('change', updateBounce);
+fallBar.addEventListener('change', updateFallSpd);
+sizeBar.addEventListener('change', updateSize);
 
 // Env Properties
 const NUM_PARTICLES = 100;
@@ -57,7 +76,7 @@ function init() {
         (Math.random() * canvas.width),
         (Math.random() * canvas.height),
         (Math.random() * (MAX_SIZE + MIN_SIZE) + MIN_SIZE),
-        'white', 0.1
+        'lightblue', 0.1
       )
     );
   }
@@ -81,6 +100,11 @@ function resize() {
 window.addEventListener('resize', resize);
 
 // Start
+updateDecay();
+updateBounce();
+updateFallSpd();
+updateSize();
+
 resize();
 init();
 animate();

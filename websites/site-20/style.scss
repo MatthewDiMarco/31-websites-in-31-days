@@ -29,7 +29,28 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 75%;
+  width: 80%;
   min-height: 10vh;
   margin: auto;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2;
+    justify-content: space-between;
+    list-style: none;
+    li {
+      text-align: center;
+    }
+  }
+  #logo {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  nav {
+    ul {
+      flex: 0;
+    }
+  }
 }
