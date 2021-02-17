@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partially Blind Robot Critique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div id="message">
+    </div>
+    <div class="robot">
+      <div class="circle-bg">
+        <div class="robot-head">
+          <div class="robot-face">
+            <div class="eyes left"></div>
+            <div class="eyes right"></div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading">
+      <img src="loading.gif">
+    </div>
+    <img id="user-img" src="#" alt="your image"/>
+    <input id="choose" type='file' accept="image/png, image/jpeg"/>
+  </main>
+  <!-- Load TensorFlow.js. This is required to use MobileNet. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+  <!-- Load the MobileNet model. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
