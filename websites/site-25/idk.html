@@ -13,6 +13,8 @@
     } 
     body {
       background: rgb(236, 236, 236);
+      font-family: "Helvetica", "Arial", sans-serif;
+      color: white;
       cursor: none;
       overflow: hidden;
     }
@@ -51,6 +53,26 @@
       width: 50px;
       height: 50px;
       border-radius: 40%;
+    }
+    .modal {
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      background: rgba(5, 5, 5, 0.8);
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: auto;
+    }
+    button {
+      padding: 10px;
+      max-width: 200px;
+      margin: 10px auto;
+      cursor: pointer;
     }
     @keyframes shake {
     0% {
@@ -97,12 +119,18 @@
   <div id="line-hor"></div>
   <div id="line-ver"></div>
   <div id="circle"></div>
+  <div class="modal">
+    <div id="msg">Aim with the mouse. Click to fire on the targets.</div>
+    <button id="reset">ROGER!</button>
+  </div>
   <script>
     let targetSize = 50;
-    let winner = false; 
     const lineHor = document.getElementById('line-hor');
     const lineVer = document.getElementById('line-ver');
     const circle = document.getElementById('circle');
+    const modal = document.querySelector('.modal');
+    const msg = document.getElementById('msg');
+    const reset = document.getElementById('reset');
 
     window.addEventListener('mousemove', e => {
       lineHor.style.left = e.pageX + 'px';
@@ -110,18 +138,40 @@
       circle.style.left = e.pageX + 'px';
       circle.style.top = e.pageY + 'px';  
     });
+
+    document.body.addEventListener('click', e => {
+      document.querySelector('.target').remove();
+      msg.innerHTML = 'YOU MISSED YOUR SHOT...';
+      reset.innerHTML = 'PLAY AGAIN'
+      modal.style.display = 'flex';
+    });
+
+    reset.addEventListener('click', e => {
+      e.stopPropagation();
+      modal.style.display = 'none';
+      circle.style.width = '100px';
+      circle.style.height = '100px';
+      targetSize = 50;
+      spawnTarget();
+    });
     
     function spawnTarget() {
       const div = document.createElement('div');
       div.classList.add('target');
-      div.style.top = Math.round(Math.random()*window.innerHeight) + 'px';
-      div.style.left = Math.round(Math.random()*window.innerWidth) + 'px';
+      div.style.top = (Math.round(Math.random()*((window.innerHeight-200) - 200)) + 200) + 'px';
+      div.style.left = (Math.round(Math.random()*((window.innerWidth-200) - 200)) + 200) + 'px';
       div.style.width = targetSize + 'px';
       div.style.height = targetSize + 'px';
-      if (targetSize > 2) targetSize -= 2;
-      else winner = true;
-      
+      if (targetSize > 4) targetSize -= 2;
+      else {
+        msg.innerHTML = 'WINNER! YOU ROCK!';
+        reset.innerHTML = 'PLAY AGAIN'
+        modal.style.display = 'flex';
+        document.querySelector('.target').remove();
+      }
+
       div.addEventListener('click', e => {
+        e.stopPropagation();
         e.target.style.animation = 'shake 0.3s ease';
         if (circle.style.width === '') {
           circle.style.width = '100px';
@@ -134,12 +184,10 @@
       });
       div.addEventListener('animationend', e => {
         e.target.remove();
-        setTimeout(spawnTarget, 1000);
+        setTimeout(spawnTarget, 10);
       });
       document.body.appendChild(div);
     }
-
-    spawnTarget();
   </script>
 </body>
 </html>
