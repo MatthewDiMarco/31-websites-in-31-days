@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aim</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    } 
+    body {
+      background: rgb(236, 236, 236);
+      cursor: none;
+      overflow: hidden;
+    }
+    #line-hor,
+    #line-ver,
+    #circle {
+      position: absolute;
+      background-color: rgb(209, 23, 23);
+      top:0;
+      left:0;
+    }
+    #line-hor {
+      width: 5px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    #line-ver {
+      width: 100%;
+      height: 5px;
+      transform: translateY(-50%);
+    }
+    #circle {
+      background-color: rgb(236, 236, 236);
+      border: 5px solid rgb(209, 23, 23);
+      border-radius: 100%;
+      width: 100px;
+      height: 100px;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .target {
+      position: absolute;
+      background-color: rgb(51, 51, 51);
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 40%;
+    }
+    @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg);
+      opacity: 1;
+    }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+      opacity: 0.5;
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+      opacity: 0.1;
+    }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+      opacity: 0;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div id="line-hor"></div>
+  <div id="line-ver"></div>
+  <div id="circle"></div>
+  <script>
+    let targetSize = 50;
+    let winner = false; 
+    const lineHor = document.getElementById('line-hor');
+    const lineVer = document.getElementById('line-ver');
+    const circle = document.getElementById('circle');
+
+    window.addEventListener('mousemove', e => {
+      lineHor.style.left = e.pageX + 'px';
+      lineVer.style.top = e.pageY + 'px';
+      circle.style.left = e.pageX + 'px';
+      circle.style.top = e.pageY + 'px';  
+    });
+    
+    function spawnTarget() {
+      const div = document.createElement('div');
+      div.classList.add('target');
+      div.style.top = Math.round(Math.random()*window.innerHeight) + 'px';
+      div.style.left = Math.round(Math.random()*window.innerWidth) + 'px';
+      div.style.width = targetSize + 'px';
+      div.style.height = targetSize + 'px';
+      if (targetSize > 2) targetSize -= 2;
+      else winner = true;
+      
+      div.addEventListener('click', e => {
+        e.target.style.animation = 'shake 0.3s ease';
+        if (circle.style.width === '') {
+          circle.style.width = '100px';
+        }
+        if (circle.style.height === '') {
+          circle.style.height = '100px';
+        }
+        circle.style.width = `${parseInt(circle.style.width) + 20}px`;
+        circle.style.height = `${parseInt(circle.style.height) + 20}px`;  
+      });
+      div.addEventListener('animationend', e => {
+        e.target.remove();
+        setTimeout(spawnTarget, 1000);
+      });
+      document.body.appendChild(div);
+    }
+
+    spawnTarget();
+  </script>
+</body>
+</html>
