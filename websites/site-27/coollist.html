@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Bar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="tabui">
+  <ul id="tabs" class="tabs">
+    <li>Thanos</li>
+    <li>Iron Man</li>
+    <li>Captain America</li>
+    <li>Black Widow</li>
+    <li>Wanda</li>
+    <li>Vision</li>
+  </ul>
+  <div id="tabcontent">
+    <div>Solid guy. Determined, driven, tough and inevitable</div>
+    <div>Elon Musk</div>
+    <div>Technically not a boomer but close enough</div>
+    <div>Has their own movie now!</div>
+    <div>Solid actress and lead producer of many beloved family sitcoms</div>
+    <div>Superman Guy</div>
+  </div>
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    //https://stackoverflow.com/questions/33908538/adding-arrows-to-horizontal-list-when-in-overflow
+    $("#tabcontent div").hide();
+    $("#tabcontent div:eq('0')").show();
+    $("ul#tabs li:eq('0')").addClass("active");
+
+    $("li").click(function() {
+      var i = $(this).index();
+      $("#tabcontent div:not(:eq(" + i + "))").hide();
+      $("#tabcontent div:eq(" + i + ")").fadeIn("slow", "linear");
+      centerLI(this, 'ul#tabs');
+      $("li").each(function() {
+        $(this).removeClass('active');
+      });
+      $(this).addClass("active");
+
+    });
+
+    //http://stackoverflow.com/a/33296765/350421
+    function centerLI(target, outer) {
+      var out = $(outer);
+      var tar = $(target);
+      var x = out.width() - 50;
+      var y = tar.outerWidth(true);
+      var z = tar.index();
+      var q = 0;
+      var m = out.find('li');
+      for (var i = 0; i < z; i++) {
+        q += $(m[i]).outerWidth(true);
+      }
+      //out.scrollLeft(Math.max(0, q - (x - y)/2));
+      out.animate({
+        scrollLeft: Math.max(0, q - (x - y) / 2)
+      }, 500);
+    }
+  </script>
+</body>
+</html>
