@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wall</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: rgb(12, 12, 12);
+      display: flex; 
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      user-select: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      margin: auto;
+      width: 300px;
+      height: 300px;
+      cursor: pointer;
+    }
+    .container > div {
+      position: relative;
+      background-color: white;
+      width: 30px;
+      height: 30px;
+    }
+    .container > div:hover {
+      opacity: 0;
+    }
+    .falling {
+      position: relative;
+      animation: falling 0.7s ease-in;
+      z-index: 1000;
+    }
+    .growing {
+      animation: growing 1s ease;
+    }
+    @keyframes falling {
+      0% {
+        background-color: auto;
+        transform: translateY(0) scale(0.9);
+      }
+      100% {
+        background-color: red;
+        transform: translateY(300px) scale(0) rotateZ(720deg);
+      }
+    }
+    @keyframes growing {
+      0% {
+        opacity: 0;
+        background-color: green;
+        transform: scale(0); 
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+  <script>
+    const NUM_BOXES = 100;
+    (function buildWall() {
+      const fall = (box) => {
+        if (!box.classList.contains('falling')) {
+          box.classList.remove('growing');
+          box.classList.add('falling');
+        }
+      } 
+      const container = document.querySelector('.container');
+      for (ii = 0; ii < NUM_BOXES; ii++) {
+        const box = document.createElement('div');
+        box.addEventListener('mouseenter', () => {fall(box)});
+        box.addEventListener('click', () => {fall(box)});
+        box.addEventListener('animationend', () => {
+          if (box.classList.contains('falling')) {
+            box.classList.remove('falling');
+            box.classList.add('growing');
+          } else {
+            box.classList.remove('growing');
+          }
+        });
+        container.appendChild(box);
+      }
+    })();
+  </script>
+</body>
+</html>
