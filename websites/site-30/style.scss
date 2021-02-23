@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  min-height: 100vh;
+  background: linear-gradient(to right top, #658cdf, #6ccfed, #6cc4ed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass {
+  position: absolute;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(1rem);
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.03) translateY(-10px);
+  }
+}
+
+.main-panel {
+  width: 65vw;
+  height: 65vh;
+  border-radius: 25px;
+  z-index: 100;
+}
+
+.minor-panel {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.left-circle {
+  bottom: 5%;
+  left: 10%;
+}
+
+.right-circle {
+  top: 5%;
+  right: 10%;
+}
